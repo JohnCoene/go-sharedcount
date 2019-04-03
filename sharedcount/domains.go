@@ -14,13 +14,13 @@ type Domains struct {
 }
 
 // GetDomains returns whitelisted domains
-func GetDomains(apikey string) Domains {
+func (apikey *APIKey) GetDomains() Domains {
 
 	data := new(Domains)
 
 	// Call API
 	var client = &http.Client{Timeout: 10 * time.Second}
-	endpoint := baseurl + "/domain_whitelist?apikey=" + apikey
+	endpoint := baseurl + "/domain_whitelist?apikey=" + apikey.Key
 	resp, err := client.Get(endpoint)
 	if err != nil {
 		log.Panic(err)

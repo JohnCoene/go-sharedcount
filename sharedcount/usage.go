@@ -19,13 +19,13 @@ type Day struct {
 }
 
 // GetUsage returns usage data of apikey
-func GetUsage(apikey string) Usage {
+func GetUsage(apikey *APIKey) Usage {
 
 	data := new(Usage)
 
 	// Call API
 	var client = &http.Client{Timeout: 10 * time.Second}
-	endpoint := baseurl + "/usage?apikey=" + apikey
+	endpoint := baseurl + "/usage?apikey=" + apikey.Key
 	resp, err := client.Get(endpoint)
 	if err != nil {
 		log.Panic(err)

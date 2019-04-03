@@ -16,13 +16,13 @@ type Quota struct {
 }
 
 // GetQuota Return rate limit information
-func GetQuota(apikey string) Quota {
+func (apikey *APIKey) GetQuota() Quota {
 
 	data := new(Quota)
 
 	// Call API
 	var client = &http.Client{Timeout: 10 * time.Second}
-	endpoint := baseurl + "/quota?apikey=" + apikey
+	endpoint := baseurl + "/quota?apikey=" + apikey.Key
 	resp, err := client.Get(endpoint)
 	if err != nil {
 		log.Panic(err)

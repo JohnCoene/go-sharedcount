@@ -7,8 +7,6 @@ import (
 	"time"
 )
 
-const baseurl = "https://api.sharedcount.com/v1.0"
-
 // Shared sharedcount object
 type Shared struct {
 	StumbleUpon   int      `json:"StumbleUpon"`
@@ -29,13 +27,13 @@ type Facebook struct {
 }
 
 // GetURL returns sharedcount data for specific url
-func GetURL(apikey, url string) Shared {
+func (apikey *APIKey) GetURL(url string) Shared {
 	// initialise data
 	data := new(Shared)
 
 	// Call API
 	var client = &http.Client{Timeout: 10 * time.Second}
-	endpoint := baseurl + "?apikey=" + apikey + "&url=" + url
+	endpoint := baseurl + "?apikey=" + apikey.Key + "&url=" + url
 	resp, err := client.Get(endpoint)
 	if err != nil {
 		log.Panic(err)
