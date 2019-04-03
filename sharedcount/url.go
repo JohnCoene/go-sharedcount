@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-const BASEURL = "https://api.sharedcount.com/v1.0"
+const baseurl = "https://api.sharedcount.com/v1.0"
 
 // Shared sharedcount object
 type Shared struct {
@@ -28,14 +28,14 @@ type Facebook struct {
 	OgObject           int `json:"og_object"`
 }
 
-// GetUrl returns sharedcount data for specific url
-func GetUrl(apikey, url string) Shared {
+// GetURL returns sharedcount data for specific url
+func GetURL(apikey, url string) Shared {
 	// initialise data
 	data := new(Shared)
 
 	// Call API
 	var client = &http.Client{Timeout: 10 * time.Second}
-	endpoint := BASEURL + "?apikey=" + apikey + "&url=" + url
+	endpoint := baseurl + "?apikey=" + apikey + "&url=" + url
 	resp, err := client.Get(endpoint)
 	if err != nil {
 		log.Panic(err)
