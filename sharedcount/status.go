@@ -13,13 +13,13 @@ type Status struct {
 }
 
 // GetStatus returns API status
-func GetStatus(apikey string) Status {
+func (apikey *APIKey) GetStatus() Status {
 
 	data := new(Status)
 
 	// Call API
 	var client = &http.Client{Timeout: 10 * time.Second}
-	endpoint := baseurl + "/status?apikey=" + apikey
+	endpoint := baseurl + "/status?apikey=" + apikey.Key
 	resp, err := client.Get(endpoint)
 	if err != nil {
 		log.Panic(err)

@@ -19,7 +19,7 @@ type Day struct {
 }
 
 // GetUsage returns usage data of apikey
-func GetUsage(apikey *APIKey) Usage {
+func (apikey *APIKey) GetUsage() Usage {
 
 	data := new(Usage)
 
