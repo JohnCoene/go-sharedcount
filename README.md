@@ -24,7 +24,7 @@ func main() {
 
 	key := &sharedcount.APIKey{Key: "myKeyGoesHere"} // setup
 
-  // Get API usage
+        // Get API usage
 	quota := key.GetURL("https://golang.org")
 	fmt.Println(quota)
 }
